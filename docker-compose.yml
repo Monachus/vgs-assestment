@@ -1,0 +1,31 @@
+version: "3.7"
+
+networks:
+  default:
+  
+services:
+  web:
+    environment: 
+      - VGS_VAULT_USERNAME=$VGS_VAULT_USERNAME
+      - VGS_VAULT_PASSWORD=$VGS_VAULT_PASSWORD
+    command: "node init.js $VGS_VAULT_USERNAME $VGS_VAULT_PASSWORD"
+    image: nodejs-app
+    build:
+      context: ./backend
+      args:
+        NODE_ENV: production
+        PORT: "8080"
+    networks:
+      - default
+  ngrok:
+    env_file: ngrok.env
+    image: shkoliar/ngrok:latest
+    links:
+    - web
+    ports:
+      - "4551:4551"
+    networks:
+      - default
+    environment:
+      - DOMAIN=web
+      - PORT=8080

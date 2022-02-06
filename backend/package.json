@@ -1,0 +1,22 @@
+{
+  "name": "vgs-assestment",
+  "version": "1.0.0",
+  "description": "VGS Test Integration Task",
+  "scripts": {
+    "start": "nodemon init.js",
+    "test": "jest"
+  },
+  "author": "Jimmy Isaac Ventura Salcedo",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "bootstrap": "^5.1.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "tunnel": "^0.0.6"
+  },
+  "devDependencies": {
+    "jest": "^25.2.7",
+    "nodemon": "^2.0.2"
+  }
+}

@@ -1,0 +1,71 @@
+<html>
+
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link href="style.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div id="cardCapturer" class="bg-light" v-cloak>
+        <div class="container">
+            <main>
+                <h2>Checkout form</h2>
+                <p class="lead text-muted">{{ message }}</p>
+                <p>
+                    <a href="#" class="btn btn-secondary my-2" v-if="!tokenized" @click="toggleTokenizer">Go to Revealer</a>
+                    <a href="#" class="btn btn-secondary my-2" v-if="tokenized" @click="toggleTokenizer">Go to Tokenizer</a>
+                </p>
+
+                <div v-if="!tokenized">
+                    <h4 class="mb-3">Tokenizer card details</h4>
+
+                    <form @submit.prevent="sendToVGS">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="cardNumber" class="form-label">Card number</label>
+                                <input type="text" class="form-control" id="cardNumber" v-model="cardNumber"
+                                    placeholder="" required="">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="ccv" class="form-label">CCV</label>
+                                <input type="text" class="form-control" id="ccv" v-model="ccv" placeholder=""
+                                    required="">
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <button type="submit" class="w-100 btn btn-primary btn-lg">Submit!</button>
+                    </form>
+                </div>
+                <div v-if="tokenized">
+                    <h4 class="mb-3">Revealer card details</h4>
+                    <form @submit.prevent="sendToEchoVGS">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="cardNumber" class="form-label">Card number</label>
+                                <input type="text" class="form-control" id="cardNumber" v-model="cardNumber"
+                                    placeholder="" required="">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="ccv" class="form-label">CCV</label>
+                                <input type="text" class="form-control" id="ccv" v-model="ccv" placeholder=""
+                                    required="">
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <button type="submit" :disabled="tokenized == false"
+                            class="w-100 btn btn-success btn-lg">Echo!</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="Controller.js"></script>
+</body>
+
+</html>
