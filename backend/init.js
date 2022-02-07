@@ -9,7 +9,7 @@ console.log("command line arguments: ", vgsArguments);
 
 app.use(express.json())
 app.use(cors({
-    origin: 'https://tntqqqjpuoh.sandbox.verygoodproxy.com',
+    origin: '*',
     optionsSuccessStatus: 200
 }))
 
